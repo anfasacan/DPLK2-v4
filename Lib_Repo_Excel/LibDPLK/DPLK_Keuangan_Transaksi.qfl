@@ -1,0 +1,161 @@
+﻿Sub Lihat_Inquiry_Pembayaran_Kepesertaan_With_Keyword(ColoumKey,Keyword,ColAction,ObjectType)
+	Set objkey = CreateObject("WScript.Shell")
+
+	Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 10
+	Jumlah_Row = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").RowCount
+	For Iterator = 1+1 To Jumlah_Row Step 1
+		Row_Key = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").GetCellData(Iterator,ColoumKey)
+		If InStr(1,ucase(Row_Key),ucase(Keyword)) <> 0 Then
+			set x = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").ChildItem(iterator,ColAction,ObjectType,0)
+			x.click
+			wait 10
+'			msgbox "Masuk " & Keyword
+			Nominal_Penerimaan = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Nominal Penerimaan").GetROProperty("value")
+			Kode_Pembayaran = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Kode Pembayaran").GetROProperty("value")
+			
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+			
+			Exit for
+		Else 
+'			msgbox "Row : " & Row_Key & "Excel : " & Keyword
+		End If
+		
+	Next
+
+
+	If InStr(1,DataTable.value("TC_ID",dtlocalsheet),"DPLKAKT094") <> 0 Then
+'	msgbox Kode_Pembayaran
+		If Kode_Pembayaran = "DISK230100003" Then
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Validasi Nominal Penerimaan", "Nominal Penerimaan Pada Page Inquiry Pembayaran Kepesertaan : " & Nominal_Penerimaan & " dan Nominal Pada Page Entry Jurnal Transaksi : " & DataTable.Value("TOTAL_AKUMULASI",dtlocalsheet) & "-" & DataTable.Value("TOTAL_PPH",dtlocalsheet) & "=" & DataTable.Value("TOTAL_AKUMULASI",dtlocalsheet) - DataTable.Value("TOTAL_PPH",dtlocalsheet), compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+		ElseIf Kode_Pembayaran = "DISK230100014" Then
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Validasi Nominal Penerimaan", "Nominal Penerimaan Pada Page Inquiry Pembayaran Kepesertaan : " & Nominal_Penerimaan & " dan Nominal Pada Page Entry Jurnal Transaksi : " & DataTable.Value("TOTAL_PPH",dtlocalsheet) , compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+		End If
+	
+	End If
+'Validasi Nominal Penerimaan
+	If Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebButton("Btn Kembali").Exist(2) Then
+		Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebButton("Btn Kembali").Click
+	End If
+End Sub
+
+Sub Lihat_Inquiry_Pembayaran_Kepesertaan
+	Set objkey = CreateObject("WScript.Shell")
+	
+	Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 7
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Cari Data Yang Diinginkan", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+	Jml_Row = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").RowCount
+	For Iterator = 1+1 To Jml_Row Step 1
+		Call AC_Direct_GoTo_Menu_No_SS("Inquiry Pembayaran Kepesertaan",1)
+		wait 2
+		Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+		wait 7
+		Set Aksi = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").ChildItem(Iterator,1,"WebElement",0)
+		Aksi.Click
+		wait 5
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 2
+	Next
+End Sub
+
+Sub Lihat_Inquiry_Pembayaran_Kepesertaan_With_Row_Number(Row_Number)
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 7
+	Set Aksi = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").ChildItem(Row_Number,1,"WebElement",0)
+	Aksi.Click
+	wait 5
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Lihat_Inquiry_Penerimaan_Investasi
+	Set objkey = CreateObject("WScript.Shell")
+
+	Browser("DPLK").Page("Inquiry Penerimaan Investasi").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 7
+	
+	Browser("DPLK").Page("Inquiry Penerimaan Investasi").WebElement("Btn Lihat").Click
+
+	wait 3
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Bandingkan_Inquiry_Penerimaan_Investasi_Global
+	Nominal_Penerimaan = Browser("DPLK").Page("Inquiry Penerimaan Investasi").WebEdit("Field Nominal Penerimaan").GetROProperty("value")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,",","")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,".","")
+'	Nominal_Penerimaan = Cint(Nominal_Penerimaan)
+	If Cstr(Global_Total_Credit) = Nominal_Penerimaan Then
+		wait 3
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Penerimaan Investasi"),"Nilai Sama Dengan Entry Jurnal Standar", "Sama - Sama "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 2
+	else 
+		wait 3
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Penerimaan Investasi"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Entry Journal Transaksi : "&Global_Total_Credit&" Sedangkan Inquiry Penerimaan Investasi : "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Failed)
+		wait 2
+	End If
+End Sub
+
+Sub Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global
+	Nominal_Penerimaan = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Nominal Penerimaan").GetROProperty("value")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,",","")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,".","")
+'	Nominal_Penerimaan = Cint(Nominal_Penerimaan)
+	
+	If Cstr(Global_Total_Credit) = Nominal_Penerimaan Then
+		wait 3
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Sama Dengan Entry Jurnal Standar", "Sama - Sama "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 2
+	else 
+		wait 3
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Entry Journal Transaksi : "&Global_Total_Credit&" Sedangkan Inquiry Penerimaan Investasi : "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Failed)
+		wait 2
+	End If
+End Sub
+
+Sub Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global_With_Array(Nilai)
+	Nominal_Penerimaan = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Nominal Penerimaan").GetROProperty("value")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,",","")
+	Nominal_Penerimaan = Replace(Nominal_Penerimaan,".","")
+'	Nominal_Penerimaan = Cint(Nominal_Penerimaan)
+	flag = false
+	Total_Nilai_DiKurang = 0
+	For Iterator = 0 To UBound(Nilai) Step 1
+		Total_Nilai_DiKurang = Nilai(Iterator) - Total_Nilai_DiKurang
+	Next
+	Total_Nilai_DiKurang_Abs = Abs(Total_Nilai_DiKurang)
+'	msgbox "ABS : "&Total_Nilai_DiKurang_Abs&"Nominal Penerimaan : "&Nominal_Penerimaan
+	
+	For Iterator = 0 To UBound(Nilai) Step 1
+		If Cstr(Nilai(Iterator)) = Nominal_Penerimaan Then
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Sama Dengan Entry Jurnal Standar", "Sama - Sama "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+			Flag = true
+			Exit For
+		End if 	
+	Next
+	
+	If Flag = False Then
+		If Cstr(Total_Nilai_DiKurang_Abs) = Nominal_Penerimaan Then
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Berbeda Kena Akumulasi Harus Dikurang Dengan PPH Menjadi Nilainya "&Total_Nilai_DiKurang_Abs,  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+		else 
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Entry Journal Transaksi : "&Global_Total_Credit&" Sedangkan Inquiry Penerimaan Investasi : "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Failed)
+			wait 2
+		End If
+	End If
+End Sub
+

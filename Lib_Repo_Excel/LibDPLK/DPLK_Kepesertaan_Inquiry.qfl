@@ -1,0 +1,57 @@
+﻿Sub Lihat_Kepesertaan_Inquiry_Inquiry_Deposit_Bulk
+	Set objkey = CreateObject("WScript.Shell")
+	wait 3
+	For Nilai = 92 To 160 Step 1
+		If len(Nilai = 2) Then
+			Flag = InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT0"&Nilai) <> 0
+		ElseIf len(Nilai = 3) Then
+			Flag = InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT"&Nilai) <> 0
+		End If
+		
+		If flag Then
+			Exit for
+		End If
+	Next
+	If Flag Then
+		Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebEdit("Field Search").Set Dokumen_Induk
+	else
+		Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebEdit("Field Search").Set DataTable.Value("KODE_JURNAL",dtlocalsheet)
+	End If
+	wait 5
+	Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebElement("Btn Lihat").Click
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Deposit (Bulk)"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+	objkey.SendKeys "{PGDN}"
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Deposit (Bulk)"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Compare_Entry_Inquiry_Deposit_Bulk
+'	Total_Iuran = Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebElement("Total Iuran").GetROProperty("innertext")
+'	Total_Iuran = Replace(Total_Iuran,",","")
+'	Total_Iuran = Replace(Total_Iuran,".","")
+	Jml_Row = Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebTable("Table Inquiry Deposit").RowCount
+	For Iterator = 1+1 To Jml_Row - 1 Step 1
+'		set Aksi = Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebTable("Table Inquiry Deposit").ChildItem(iterator,1,"WebElement",0)
+'		Aksi.Click
+		Iuran = Browser("DPLK").Page("Inquiry Deposit (Bulk)").WebTable("Table Inquiry Deposit").GetCellData(Iterator,6)
+		Iuran = Replace(Iuran,",","")
+		Iuran = Replace(Iuran,".","")
+		
+		int_Iuran = int_Iuran + Cdbl(Iuran)
+	Next
+	Total_Iuran = int_Iuran
+	
+	If Cstr(Global_Total_Credit) = Cstr(Total_Iuran) Then
+		wait 2
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Deposit (Bulk)"),"Data Sama Dengan Yang Di Entry Jurnal", "Sama - Sama "&Total_Iuran,  compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 2
+	Else 
+		wait 2
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Deposit (Bulk)"),"Data Berbeda Dengan Yang Di Entry Jurnal", "Total Iuran : "&Total_Iuran&" Total Debit/Kredit : "&Global_Total_Credit,  compatibilityMode.Desktop, ReportStatus.Failed)
+		wait 2
+	End If
+End Sub
+

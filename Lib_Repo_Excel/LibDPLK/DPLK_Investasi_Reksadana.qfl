@@ -1,0 +1,44 @@
+﻿Sub Lihat_Investasi_Reksadana_Dealing_Ticket_Reksadana
+	Set objkey = CreateObject("WScript.Shell")
+	wait 3
+	If instr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT155") <> 0 Then
+		flag2 = true
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT158") <> 0 Then
+		flag2 = true
+	End If
+	
+	If flag Then
+		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set Dokumen_Induk	
+	ElseIf flag2 Then
+		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set Tiket_ID
+	Else 
+		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
+	End If
+		
+	flag = false
+	flag2 = false
+	wait 5
+	Browser("DPLK").Page("Dealing Ticket Reksadana").WebElement("Btn Lihat").Click
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Dealing Ticket Reksadana"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Compare_Investasi_Reksadana_Dealing_Ticket_Reksadana
+	Nominal_Setlement = Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Nominal Setlement").GetROProperty("value")
+	Nominal_Setlement = Replace(Nominal_Setlement,",","")
+	Nominal_Setlement = Replace(Nominal_Setlement,".","")
+	Int_Nominal_Setlement = CDbl(Nominal_Setlement)
+	
+	If instr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT155") <> 0 Then
+		If Int_Nominal_Setlement = Global_Total_Debit Then
+			wait 2
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Dealing Ticket Reksadana"),"Data Sama", "Data Sama - Sama "&Int_Nominal_Setlement,  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2	
+		Else 
+			wait 2
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Dealing Ticket Reksadana"),"Data Berbeda", "Data Nominal Setlement : "&Int_Nominal_Setlement&", Data Entry Jurnal Transaksi : "&Global_Total_Debit,  compatibilityMode.Desktop, ReportStatus.Failed)
+			wait 2
+		End If
+	End If
+End Sub
