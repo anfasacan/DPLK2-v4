@@ -729,6 +729,9 @@ Sub Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set DataTable.value("SEARCH_GLOBAL",dtlocalsheet)	
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set DataTable.value("SEARCH_KETERANGAN",dtlocalsheet)	
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Kode Buku").Set DataTable.value("SEARCH_KODE_BUKU",dtlocalsheet)	
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT130") <> 0 Then
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Kode Buku").Set DataTable.value("SEARCH_KODE_BUKU",dtlocalsheet)	
 	End If
 	
 	rem ----- Object Yang Dapat Digunakan 
@@ -784,6 +787,8 @@ Sub Search_Entry_Jurnal_Transaksi_With_Condition
 	If instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT158") <> 0 Then
 		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT131") <> 0 Then
+		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT130") <> 0 Then
 		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 	else
 		Call Fill_Search_Entry_Jurnal_Transaksi
@@ -849,4 +854,45 @@ Sub Buka_Entry_Jurnal_Transaksi_Using_Row_Number(Row_Number)
 End Sub
 
 
+Function Make_Array_Nominal_Transaksi
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+	wait 1
+	objkey.SendKeys "Entry Jurnal Transaksi"
+	wait 2
+	objkey.SendKeys "{ENTER}"
+	wait 2
+	Call Search_Entry_Jurnal_Transaksi_With_Condition
+	Browser("DPLK").Page("Entry Jurnal Transaksi").Link("Btn Show rows").Click
+	wait 1
+	Browser("DPLK").Page("Entry Jurnal Transaksi").Link("Show 100 Rows").Click
+	wait 10
+	Jml_Row = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").RowCount
+	wait 2
+	For Iterator = 1+2 To Jml_Row Step 1
+		Nilai_Transaksi = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(Iterator,10)
+		Nilai_Transaksi = Replace(Nilai_Transaksi,",","")
+		Nilai_Transaksi = Replace(Nilai_Transaksi,".","")
+		If Iterator = Jml_Row Then
+			Nilai_Transaksi_Arr = Nilai_Transaksi_Arr & "," &Nilai_Transaksi
+		ElseIf Iterator = 3 Then
+			Nilai_Transaksi_Arr = Nilai_Transaksi & ","
+		Else 
+			Nilai_Transaksi_Arr = Nilai_Transaksi_Arr & Nilai_Transaksi &","
+		End If
+	Next
+	Make_Array_Nominal_Transaksi = Nilai_Transaksi_Arr
+End Function
+
+Function Get_Nilai_Nominal_For_TC_130
+	Call AC_Direct_GoTo_Menu_No_SS("Entry Jurnal Transaksi",1)
+	Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
+	Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Pembayaran Klaim"
+	wait 5
+	Jml_Row = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").RowCount
+	
+	For Iterator = 1+2 To Jml_Row Step 1
+		
+	Next
+End Function
 

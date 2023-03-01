@@ -13,6 +13,7 @@ Iteration = Environment.Value("ActionIteration")
 user = Split(DataTable.Value("USERID",dtlocalsheet),",")
 Password = DataTable.Value("PASSWORD",dtlocalsheet)
 REM ------- DPLK
+
 Call DA_Login_Batch(User(0),Password)
 Call AC_Direct_GoTo_Menu_No_SS("Entry Jurnal Transaksi",1)
 Call Sum_Nilai_Transaksi_Entry_Jurnal_Transaksi()

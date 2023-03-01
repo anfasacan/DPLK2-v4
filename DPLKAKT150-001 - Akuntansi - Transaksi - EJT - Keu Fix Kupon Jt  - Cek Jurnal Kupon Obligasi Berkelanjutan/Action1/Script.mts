@@ -15,8 +15,8 @@ Call DA_Login()
 Call AC_GoTo_Menu()
 Call Lihat_Entry_Jurnal_Transaksi()
 Call Compare_Debit_And_Credit()
-Call DA_Logout("0")
-Call spReportForceSave()
+Call AC_Logout()
+Call spReportSave()
 
 	
 Sub spLoadLibrary()

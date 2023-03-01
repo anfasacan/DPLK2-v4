@@ -11,13 +11,22 @@ preperation = Split(DataTable.Value("PREPERATION",dtlocalsheet),",")
 Call spAddScenario(dt_TCID, dt_TestScenarioDesc, dt_ScenarioDesc, dt_ExpectedResult, preperation)
 Iteration = Environment.Value("ActionIteration")
 REM ------- DPLK
-
-
 Call DA_Login()
+Call Make_Array_Nominal_Transaksi()
+
+Nilai = Split(Make_Array_Nominal_Transaksi,",")
+Call Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan()
 Call AC_GoTo_Menu()
-Call Lihat_Inquiry_Pembayaran_Kepesertaan()
+For Iterator = 1+1 To Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan Step 1
+	Call Lihat_Inquiry_Pembayaran_Kepesertaan_With_Row_Number(Iterator)
+	Call Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global_With_Array(Nilai)
+	Call AC_GoTo_Menu_No_SS()
+Next
+
+'Call Lihat_Inquiry_Pembayaran_Kepesertaan()
+'Call Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global()
 Call DA_Logout("0")
-Call Reset_Global_Var()
+'Call Reset_Global_Var()
 Call spReportSave()
 
 Sub spLoadLibrary()

@@ -75,3 +75,27 @@ Sub Cetak_Laporan_Keuangan
 	Call Login_Download_Akuntansi_Laporan()
 	wait 20
 End Sub
+
+Sub Cetak_Laporan_OJK
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Laporan OJK").WebElement("Dropdown Nama Laporan").Click
+	wait 2
+	objkey.SendKeys DataTable.Value("NAMA_LAPORAN",dtlocalsheet)
+	wait 1
+	objkey.SendKeys "{ENTER}"
+	Browser("DPLK").Page("Laporan OJK").WebElement("Dropdown Entitas").Click
+	wait 2
+	objkey.SendKeys DataTable.Value("ENTITAS",dtlocalsheet)
+	wait 1
+	objkey.SendKeys "{ENTER}"
+	Browser("DPLK").Page("Laporan OJK").WebElement("Dropdown Kantor").Click
+	wait 2
+	objkey.SendKeys DataTable.Value("KANTOR",dtlocalsheet)
+	wait 1
+	objkey.SendKeys "{ENTER}"
+	
+	Browser("DPLK").Page("Laporan OJK").WebEdit("Field Tanggal Laporan").Set DataTable.Value("TANGGAL_PERIODE",dtlocalsheet)
+	Browser("DPLK").Page("Laporan OJK").WebButton("Btn Download").Click
+	
+	wait 300
+End Sub
