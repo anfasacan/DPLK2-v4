@@ -17,19 +17,16 @@ REM ------- DPLK
 Call DA_Login_Batch_No_SS(User(0),Password)
 Call Open_Entry_Jurnal_Transaksi()
 Call Ambil_Total_Debit_Credit()
-Call DA_Logout_No_SS("0")
+Call AC_Logout_No_SS()
 
 Call DA_Login_Batch(User(1),Password)
 Call AC_GoTo_Menu()
 Call Lihat_Inquiry_Penerimaan_Investasi()
 Call Bandingkan_Inquiry_Penerimaan_Investasi_Global()
-Call DA_Logout("0")
+Call AC_Logout()
 Call Reset_Global_Var()
-Call spReportForceSave()
+Call spReportSave()
 
-
-
-	
 Sub spLoadLibrary()
 	Dim LibPathDPLK, LibReport, LibRepo, objSysInfo
 	Dim tempDPLKPath, tempDPLKPath2, PathDPLK

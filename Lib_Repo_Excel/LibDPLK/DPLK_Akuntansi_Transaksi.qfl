@@ -731,6 +731,7 @@ Sub Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Kode Buku").Set DataTable.value("SEARCH_KODE_BUKU",dtlocalsheet)	
 	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT130") <> 0 Then
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
+		wait 2
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Kode Buku").Set DataTable.value("SEARCH_KODE_BUKU",dtlocalsheet)	
 	End If
 	
@@ -882,6 +883,7 @@ Function Make_Array_Nominal_Transaksi
 		End If
 	Next
 	Make_Array_Nominal_Transaksi = Nilai_Transaksi_Arr
+	
 End Function
 
 Function Get_Nilai_Nominal_For_TC_130
@@ -890,9 +892,79 @@ Function Get_Nilai_Nominal_For_TC_130
 	Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Pembayaran Klaim"
 	wait 5
 	Jml_Row = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").RowCount
-	
 	For Iterator = 1+2 To Jml_Row Step 1
+		Call AC_Direct_GoTo_Menu_No_SS("Entry Jurnal Transaksi",1)
+		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Pembayaran Klaim"
+		wait 5
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebElement("Short Nilai Transaksi").Click
+		Pembayaran_Klaim = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(Iterator,10)
+		Pembayaran_Klaim = Replace(Pembayaran_Klaim,",","")
+		Pembayaran_Klaim = Replace(Pembayaran_Klaim,".","")
+		Pembayaran_Klaim_Int = CDbl(Pembayaran_Klaim)
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Pembayaran Pajak"
+		wait 5
+		Pembayaran_Pajak = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(Iterator,10)
+		Pembayaran_Pajak = Replace(Pembayaran_Pajak,",","")
+		Pembayaran_Pajak = Replace(Pembayaran_Pajak,".","")
+		Pembayaran_Pajak_Int = CDbl(Pembayaran_Pajak)
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Biaya Administrasi"
+		wait 5
+		Biaya_Admin = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(Iterator,10)
+		Biaya_Admin = Replace(Biaya_Admin,",","")
+		Biaya_Admin = Replace(Biaya_Admin,".","")
+		Biaya_Admin_Int = CDbl(Biaya_Admin)
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set "Biaya Kelolaan"
+		wait 5
+		Biaya_Kelolaan = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(Iterator,10)
+		Biaya_Kelolaan = Replace(Biaya_Kelolaan,",","")
+		Biaya_Kelolaan = Replace(Biaya_Kelolaan,".","")
+		Biaya_Kelolaan_Int = CDbl(Biaya_Kelolaan)
 		
+		Call AC_Direct_GoTo_Menu_No_SS("Inquiry Pembayaran Kepesertaan",1)
+		wait 5
+		Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+		wait 5
+		Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebElement("Short Nominal").Click
+		wait 2
+		Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebElement("Short Nominal").Click
+		wait 2
+		Jum_row = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").RowCount
+		If Iterator = 3 Then
+			For Iteratorr = 1+1 To Jum_row Step 1
+				If Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").GetCellData(Iteratorr,5) <> "0,00" Then
+					Admin_Bank = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").GetCellData(Iteratorr,5)
+					Admin_Bank = Replace(Admin_Bank,",","")
+					Admin_Bank = Replace(Admin_Bank,".","")
+					Admin_Bank_Arr = Admin_Bank_Arr & Admin_Bank & ","
+					Admin_Bank = ""
+				End If
+			Next
+		End If
+		If Iterator = 3 Then
+			Admin_Bank_Arr = Left(Admin_Bank_Arr,len(Admin_Bank_Arr)-1)	
+		End If
+		Admin_Bank_Array = Split(Admin_Bank_Arr,",")
+		Biaya_Bank_Selected = Admin_Bank_Array(Iterator - 3)
+		
+		Biaya_Bank_Int = CDbl(Biaya_Bank_Selected)
+		
+		Nilai_Nominal = Pembayaran_Klaim_Int - Pembayaran_Pajak_Int - Biaya_Admin_Int - Biaya_Kelolaan_Int - Biaya_Bank_Int
+		Print Pembayaran_Klaim_Int &"-"& Pembayaran_Pajak_Int &"-"& Biaya_Admin_Int &"-"& Biaya_Kelolaan_Int &"-"& Biaya_Bank_Int &"="& Nilai_Nominal
+		Nilai_Nominal = Abs(Nilai_Nominal)
+		If Iterator <> Jml_Row Then
+			Get_Nilai_Nominal_For_TC_130 = Get_Nilai_Nominal_For_TC_130 & Nilai_Nominal & ","
+		Else 
+			Get_Nilai_Nominal_For_TC_130 = Get_Nilai_Nominal_For_TC_130 & Nilai_Nominal
+		End If
+		
+		Nilai_Nominal = 0
+		Pembayaran_Klaim_Int = 0
+		Pembayaran_Pajak_Int = 0
+		Biaya_Admin_Int = 0
+		Biaya_Kelolaan_Int = 0
 	Next
+'	msgbox Biaya_Bank_Selected
+'	msgbox Get_Nilai_Nominal_For_TC_130
 End Function
 

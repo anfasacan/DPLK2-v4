@@ -15,7 +15,9 @@ Iteration = Environment.Value("ActionIteration")
 Call DA_Login()
 Call AC_GoTo_Menu()
 Call Cari_dan_Ubah_Transaksi_Validasi()
+Call Check_Dialog_Pop_Up
 Call Ubah_Validasi_Klaim()
+'Call Kirim_Ke_CFM_Desk()
 Call Kirim_Ke_Cal_Desk()
 Call DA_Logout("0")
 

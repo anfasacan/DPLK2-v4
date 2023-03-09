@@ -422,7 +422,7 @@ Sub UploadEntryHargaPasar
 	tempDPLKPath 	= Environment.Value("TestDir")
 	tempDPLKPath2 	= InStrRev(tempDPLKPath, "\")
 	pathDPLK		= Left(tempDPLKPath, tempDPLKPath2)
-	uploadPathDPLK	= pathDPLK & "File_Upload\"
+	uploadPathDPLK	= pathDPLK & "File Upload\"
 	
 	'memanggil data dibutuhkan dari excel dan membuat data
 	tglMarket		= DataTable.Value("TGL_MARKET",dtlocalsheet)

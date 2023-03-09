@@ -18,7 +18,7 @@ Call AC_GoTo_Menu()
 Call Lihat_Setup_Akuntansi_Setup_Jurnal_Standar()
 Call Bandingkan_No_Akun_Setup_Akuntansi_Setup_Jurnal_Standar()
 Call DA_Logout("0")
-Call spReportForceSave()
+Call spReportSave()
 
 	
 Sub spLoadLibrary()

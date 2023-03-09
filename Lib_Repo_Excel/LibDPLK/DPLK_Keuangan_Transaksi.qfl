@@ -157,6 +157,9 @@ Sub Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global_With_Array(Nilai)
 				Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Berbeda Karena Akumulasi Harus Dikurang Dengan PPH Menjadi Nilainya "&Total_Nilai_DiKurang_Abs,  compatibilityMode.Desktop, ReportStatus.Passed)
 				wait 2
 			ElseIf InStr(1,DataTable.Value("TC_ID",dtlocalsheet),"130") <> 0 Then
+				wait 3
+				Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan"),"Nilai Berbeda Dengan Entry Jurnal Standar", "Nilai Inquiry Penerimaan Investasi : "&Nominal_Penerimaan,  compatibilityMode.Desktop, ReportStatus.Failed)
+				wait 2
 			End If
 		else 
 			wait 3
@@ -175,5 +178,5 @@ Function Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan
 	objkey.SendKeys "{ENTER}"
 	wait 2
 	Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan = Browser("DPLK").Page("Inquiry Pembayaran Kepesertaan").WebTable("Tabel Inquiry Pembayaran Kepesertaan Search").RowCount
-	Nominal_Transaksi = asd
 End Function
+

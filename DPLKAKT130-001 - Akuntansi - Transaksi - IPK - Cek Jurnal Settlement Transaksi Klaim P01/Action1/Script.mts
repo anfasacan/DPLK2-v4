@@ -12,9 +12,10 @@ Call spAddScenario(dt_TCID, dt_TestScenarioDesc, dt_ScenarioDesc, dt_ExpectedRes
 Iteration = Environment.Value("ActionIteration")
 REM ------- DPLK
 Call DA_Login()
+Call Get_Nilai_Nominal_For_TC_130
 Call Make_Array_Nominal_Transaksi()
-
-Nilai = Split(Make_Array_Nominal_Transaksi,",")
+Nilai_Concat = Make_Array_Nominal_Transaksi&","&Get_Nilai_Nominal_For_TC_130
+Nilai = Split(Nilai_Concat,",")
 Call Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan()
 Call AC_GoTo_Menu()
 For Iterator = 1+1 To Ambil_Jumlah_Row_Inquiry_Pembayaran_Kepesertaan Step 1
@@ -26,7 +27,7 @@ Next
 'Call Lihat_Inquiry_Pembayaran_Kepesertaan()
 'Call Bandingkan_Inquiry_Pembayaran_Kepesertaan_Global()
 Call DA_Logout("0")
-'Call Reset_Global_Var()
+Call Reset_Global_Var()
 Call spReportSave()
 
 Sub spLoadLibrary()
