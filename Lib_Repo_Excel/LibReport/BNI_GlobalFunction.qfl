@@ -10,9 +10,10 @@
 	Dim Global_Total_Debit
 	Dim Credit
 	Dim Debit
+	Dim CLM
 	Dim Tiket_ID
 	Dim Nilai_Transaksi_Total
-	
+	Dim Cell_Data_By_Row_And_Col
 	Dim projectFdate, projectF, PathFolder1
 	Dim dtFolder
 	Dim dtFolderUFT

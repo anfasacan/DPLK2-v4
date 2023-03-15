@@ -6,6 +6,14 @@
 	wait 7
 End Sub
 
+Sub Fill_Search_Entry_Jurnal_Transaksi_Using_Parameter(Search,StartDate,EndDate)
+	Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Tanggal Awal").Set StartDate
+	Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Tanggal Akhir").Set EndDate
+
+	Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set Search
+	wait 7
+End Sub
+
 Sub Lihat_Entry_Jurnal_Transaksi
 	Set objkey = CreateObject("WScript.Shell")
 	Call Fill_Search_Entry_Jurnal_Transaksi()
@@ -733,6 +741,11 @@ Sub Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
 		wait 2
 		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Kode Buku").Set DataTable.value("SEARCH_KODE_BUKU",dtlocalsheet)	
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT162") <> 0 Then
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search").Set DataTable.value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
+		wait 2
+		Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Search Keterangan").Set DataTable.value("SEARCH_KETERANGAN",dtlocalsheet)	
+		wait 2
 	End If
 	
 	rem ----- Object Yang Dapat Digunakan 
@@ -790,6 +803,10 @@ Sub Search_Entry_Jurnal_Transaksi_With_Condition
 	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT131") <> 0 Then
 		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT130") <> 0 Then
+		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT162") <> 0 Then
+		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
+	ElseIf instr(1,DataTable.Value("TC_ID",dtlocalsheet),"AKT163") <> 0 Then
 		Call Fill_Search_Field_By_TC_Entry_Jurnal_Transaksi
 	else
 		Call Fill_Search_Entry_Jurnal_Transaksi
@@ -968,3 +985,46 @@ Function Get_Nilai_Nominal_For_TC_130
 '	msgbox Get_Nilai_Nominal_For_TC_130
 End Function
 
+Sub Get_Cell_Data_By_Row_And_Col(row,col)
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+	wait 1
+	objkey.SendKeys "Entry Jurnal Transaksi"
+	wait 2
+	objkey.SendKeys "{ENTER}"
+	wait 2
+	Call Search_Entry_Jurnal_Transaksi_With_Condition
+	Cell_Data_By_Row_And_Col = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").GetCellData(row,col)
+'	msgbox Cell_Data_By_Row_And_Col
+End Sub
+
+Sub Lihat_Entry_Jurnal_Transaksi_All_Row_And_Compare_Using_Search_Parameter(Search,StartDate,EndDate)
+	Set objkey = CreateObject("WScript.Shell")
+	Call Fill_Search_Entry_Jurnal_Transaksi_Using_Parameter(Search,StartDate,EndDate)
+	wait 7
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Entry Jurnal Transaksi"),"Cari Data Yang Ingin Digunakan", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+	
+	Total_Row = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").RowCount
+	If Total_Row - 2 > 1 Then
+		For Iterator = 1+2 To Total_Row Step 1
+			Call Fill_Search_Entry_Jurnal_Transaksi_Using_Parameter(Search,StartDate,EndDate)
+			set Aksi = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").ChildItem(iterator,1,"WebElement",0)
+			Aksi.click
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Entry Jurnal Transaksi"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+			objkey.SendKeys "{PGDN}"
+			wait 3
+			Call CaptureImageUFTV2(Browser("DPLK").Page("Entry Jurnal Transaksi"),"Masuk Menu Lihat Data, Berikut Data Yang Dipilih", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+			wait 2
+			
+			Call Compare_Debit_And_Credit()
+			
+			Browser("DPLK").Page("Entry Jurnal Transaksi").WebButton("Btn Kembali").Click
+		Next
+	Else 
+		Call Lihat_Entry_Jurnal_Transaksi()
+		Call Compare_Debit_And_Credit()
+	End If
+End Sub

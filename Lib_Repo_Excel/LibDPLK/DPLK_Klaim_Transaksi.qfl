@@ -819,6 +819,7 @@ Sub Kirim_Ke_Approve_Calculate_Klaim_Pasca_Kerja
 	objkey.SendKeys DataTable.Value("KEPUTUSAN_KLAIM",dtlocalsheet)
 	wait 2
 	objkey.SendKeys "{ENTER}"
+	Call Validasi_Isi_Field_Approve_Klaim
 	wait 2
 	Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebButton("Btn Approve"),"Tekan Button Approve", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 	wait 2
@@ -1000,6 +1001,8 @@ Sub Approve_Klaim_Kolektif
 	wait 1
 	objkey.SendKeys "{ENTER}"
 	wait 2
+	Call Validasi_Isi_Field_Approve_Klaim
+	wait 2	
 	Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Kolektif").WebButton("Btn Approve"),"Tekan Button Approve", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 	wait 2
 	Browser("DPLK").Page("Approval Klaim Kolektif").WebButton("Btn Approve").Click
@@ -1147,5 +1150,115 @@ Sub Batalkan_Klaim_Pasca_Kerja
 	Call CaptureImageUFTV2(Browser("DPLK").Page("Validasi Klaim Pasca Kerja").WebButton("Btn Batalkan Pengajuan Klaim"),"Tekan Button Batalkan Pengajuan Klaim", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 	wait 2
 	Browser("DPLK").Page("Validasi Klaim Pasca Kerja").WebButton("Btn Batalkan Pengajuan Klaim").Click
+	wait 20
+End Sub
+
+Sub Search_Nilai_Transaksi_Pasca_Kerja_dari_Entry_Jurnal_Transaksi(Search_Value)
+	set objkey = CreateObject("WScript.Shell")
+	Set PasteData = CreateObject("Mercury.Clipboard")
+	Set devices = CreateObject("Mercury.DeviceReplay")
+	Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebButton("Btn Remove all items").Click
+	wait 2
+	objkey.SendKeys "{ESC}"
+	wait 3
+	Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebElement("Btn Lihat").Click
+	wait 3
+	For Iterator = 1 To 9 Step 1
+		objkey.SendKeys "^="
+		wait 1
+	Next
+	
+	wait 2
+	objkey.SendKeys "^f"
+	wait 1
+	objkey.SendKeys Search_Value
+	wait 1
+	objkey.SendKeys "{ENTER}"
+	wait 1
+	devices.MouseDblClick 879 , 420 , LEFT_MOUSE_BUTTON
+	wait 1
+	set TekanButton = CreateObject("WScript.Shell")
+	wait 2
+	TekanButton.SendKeys "^c"
+	wait 3
+	TekanButton.SendKeys "^C"
+	wait 5
+	TekanButton.SendKeys "{F6}"
+	wait 5
+	TekanButton.SendKeys "^0"
+	wait 3	
+	TekanButton.SendKeys "{F12}"
+	wait 2
+	TekanButton.SendKeys "{ESC}"
+	wait 1
+	TekanButton.SendKeys "{ESC}"
+	wait 1
+	Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebElement("Header").Click
+	wait 1
+	TekanButton.SendKeys "^f"
+	wait 1
+	TekanButton.SendKeys "^f"
+	wait 1
+	TekanButton.SendKeys Search_Value
+	wait 1
+	TekanButton.SendKeys "{ENTER}"
+	wait 2
+	Browser("DPLK").Page("Approval Klaim Pasca Kerja").WebElement("Total Penarikan").Click
+	wait 2
+	If Search_Value = PasteData.GetText Then
+		wait 2
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Pasca Kerja"),"Nilai "&Keterangan&" Sama", "Sama - Sama "&Search_Value,  compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 2
+	Else 
+		wait 2
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Pasca Kerja"),"Nilai "&Keterangan&" Berbeda", "Data Yang Dicari : "&Search_Value&" Data Yang ditemukan : "&PasteData.GetText ,  compatibilityMode.Desktop, ReportStatus.Failed)
+		wait 2
+	End If
+	
+	PasteData.Clear
+End Sub
+
+Sub Lihat_Transaksi_Klaim_Approval_Klaim_Kolektif
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebButton("Btn Remove all items").Click
+	objkey.SendKeys "{ESC}"
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Kolektif"),"Cari Data Yang Diinginkan, Dan Tekan Button Lihat", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 7
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebElement("Btn Lihat").Click
+	wait 7
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Approval Klaim Kolektif"),"Berikut Data Yang Di Lihat", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Lihat_Transaksi_Klaim_Approval_Klaim_Kolektif_No_SS
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebButton("Btn Remove all items").Click
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 7
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebElement("Btn Lihat").Click
+	wait 7
+End Sub
+
+Function Ambil_Banyaknya_Data_Tabel_Approval_Klaim_Kolektif
+	Call AC_Direct_GoTo_Menu_No_SS("Approval Klaim Kolektif" ,1)
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebButton("Btn Remove all items").Click
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)
+	wait 7
+	Browser("DPLK").Page("Approval Klaim Kolektif").WebElement("Btn Lihat").Click
+	wait 7
+	Ambil_Banyaknya_Data_Tabel_Approval_Klaim_Kolektif = Browser("DPLK").Page("Approval Klaim Kolektif").WebTable("Tbl No Rek").RowCount
+End Function
+
+Function Get_CLM_Number_From_Approval_Klaim_Kolektif(Row,Col)
+	CLM = Browser("DPLK").Page("Approval Klaim Kolektif").WebTable("Tbl No Rek").GetCellData(Row,Col)
+	CLM = Replace(CLM,"Cetak Hitungan","")
+	CLM = Replace(CLM," ","")
+End Function
+
+Sub Download_Approval_Klaim_Kolektif(Row,Col)
+	set Download = Browser("DPLK").Page("Approval Klaim Kolektif").WebTable("Tbl No Rek").ChildItem(Row,1,"WebElement",0)
+	Download.Click
 	wait 20
 End Sub
