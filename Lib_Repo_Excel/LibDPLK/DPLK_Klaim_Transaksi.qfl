@@ -1262,3 +1262,53 @@ Sub Download_Approval_Klaim_Kolektif(Row,Col)
 	Download.Click
 	wait 20
 End Sub
+
+Sub Cari_Koreksi_Rekening_Klaim
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebEdit("Field Search").Set DataTable.Value("ID_PESERTA",dtlocalsheet)
+	wait 7
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Koreksi Rekening Klaim"),"Cari Data Yang Diinginkan, Dan Tekan Button Lihat", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+
+Sub Lihat_Dan_Ubah_Koreksi_Rekening_Klaim
+	
+End Sub
+
+Sub Ubah_Koreksi_Rekening_Klaim
+	Set objkey = CreateObject("WScript.Shell")
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebEdit("Field Pemilik Rekening").Set DataTable.Value("NAMA_KOREKSI",dtlocalsheet)
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebEdit("Field Cabang Bank").Set DataTable.Value("CABANG_BANK",dtlocalsheet)
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebEdit("Field Nomer Rekening").Set DataTable.Value("NO_REKENING_KOREKSI",dtlocalsheet)
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebElement("Dropdown Bank").Click
+	objkey.SendKeys DataTable.Value("BANK_KOREKSI",dtlocalsheet)
+	wait 2
+	objkey.SendKeys "{ENTER}"
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Koreksi Rekening Klaim"),"Ubah Field yang diperlukan", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Lihat_Koreksi_Rekening_Klaim
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebElement("Btn Ubah").Click
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Koreksi Rekening Klaim"),"Berikut Isi Data", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Sub Simpan_Koreksi_Rekening_Klaim
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Koreksi Rekening Klaim").WebButton("Btn Simpan"),"Tekan Button Simpan Untuk Menyimpan Perubahan", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebButton("Btn Simpan").Click
+	wait 10
+End Sub
+
+Sub Approve_Koreksi_Rekening_Klaim
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Koreksi Rekening Klaim").WebButton("Btn Approve"),"Tekan Button Approve Untuk Approve Perubahan", " " ,  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+	Browser("DPLK").Page("Koreksi Rekening Klaim").WebButton("Btn Approve").Click
+	wait 10
+End Sub

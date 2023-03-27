@@ -1028,3 +1028,21 @@ Sub Lihat_Entry_Jurnal_Transaksi_All_Row_And_Compare_Using_Search_Parameter(Sear
 		Call Compare_Debit_And_Credit()
 	End If
 End Sub
+
+Sub Lihat_Entry_Jurnal_Transaksi_Using_Search_Parameter(Search,StartDate,EndDate)
+	Set objkey = CreateObject("WScript.Shell")
+	Call Fill_Search_Entry_Jurnal_Transaksi_Using_Parameter(Search,StartDate,EndDate)
+	wait 7
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Entry Jurnal Transaksi"),"Cari Data Yang Ingin Digunakan", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2
+End Sub
+
+Function  Ambil_Jumlah_Baris_Search_Entry_Jurnal_Transaksi_v2
+	Ambil_Jumlah_Baris_Search_Entry_Jurnal_Transaksi_v2 = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").RowCount
+End Function
+
+Sub Ambil_Kode_Jurnal_Standar_using_Row(Row)
+	set Aksi = Browser("DPLK").Page("Entry Jurnal Transaksi").WebTable("Table Entry Jurnal Transaksi Search").ChildItem(Row,1,"WebElement",0)
+	Aksi.click
+	Kode_Jurnal_Standar = Browser("DPLK").Page("Entry Jurnal Transaksi").WebEdit("Field Kode Jurnal Standar").GetROProperty("value")
+End Sub

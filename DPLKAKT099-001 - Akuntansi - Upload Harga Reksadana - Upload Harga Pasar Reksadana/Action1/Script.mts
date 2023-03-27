@@ -3,7 +3,7 @@ Dim preparation ,iteration
 
 REM -------------- Call Function
 Call spLoadLibrary()
-Call spInitiateData("DPLKLib_Report.xlsx", "DPLKAKT099-001 - Akuntansi - Upload Harga Reksadana - Upload Harga Pasar Reksadana.xlsx", "DPLKAKT099-001")
+Call spInitiateData("DPLKLib_Report.xlsx", "DPLKAKT099-001 - Akuntansi - Upload Harga Reksadana - Upload Harga Pasar Reksadana (1).xlsx", "DPLKAKT099-001")
 Call spGetDatatable()
 Call fnRunningIterator()
 Call spReportInitiate()
@@ -19,10 +19,6 @@ Call AC_Direct_GoTo_Menu(DataTable.Value("SIDEBAR_SUBMENU",dtlocalsheet),1)
 
 Call Upload_Harga_Pasar_Reksadana()
 Call Search_Harga_Pasar_Reksadana()
-'Call UploadEntryHargaPasar()
-'Call Search_Harga_Pasar_Reksadana()
-'Call ClickSidebarSubmenu()
-'Call ClickSidebar()
 Call DA_Logout("0")
 
 Call spReportSave()

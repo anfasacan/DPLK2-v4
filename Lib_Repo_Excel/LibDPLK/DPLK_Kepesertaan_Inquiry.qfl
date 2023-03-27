@@ -55,3 +55,30 @@ Sub Compare_Entry_Inquiry_Deposit_Bulk
 	End If
 End Sub
 
+Sub Search_Inquiry_Rekening()
+	Browser("DPLK").Page("Inquiry Rekening").WebEdit("Field Search Rekening").Set DataTable.Value("ID_PESERTA",dtlocalsheet)
+	wait 2
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Rekening"),"Berikut No Rekening yang ditemukan", " ",compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 2	
+End Sub
+
+Sub Lihat_Inquiry_Rekening()
+	Browser("DPLK").Page("Inquiry Rekening").WebElement("Btn Lihat Detail").Click
+	wait 5
+	Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Rekening"),"Berikut Data Detail dari No Rekening Tersebut", " ",compatibilityMode.Desktop, ReportStatus.Passed)
+	wait 5
+End Sub
+
+Sub Compare_Inquiry_Rekening()
+Set objkey = CreateObject("WScript.Shell")
+objkey.SendKeys"(PGDN)"
+	If Browser("DPLK").Page("Inquiry Rekening").WebElement("Nilai Total").Exist(5) Then
+		wait 5
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Rekening"),"Total Saldo Rekening Nasabah Setelah Penarikan Sudah Sesuai = 0", " ",compatibilityMode.Desktop, ReportStatus.Passed)
+		wait 5
+	Else
+		wait 5
+		Call CaptureImageUFTV2(Browser("DPLK").Page("Inquiry Rekening"),"Total Saldo Rekening Nasabah Setelah Penarikan Tidak Sesuai", " ",compatibilityMode.Desktop, ReportStatus.Failed)
+		wait 5
+	End If
+End Sub

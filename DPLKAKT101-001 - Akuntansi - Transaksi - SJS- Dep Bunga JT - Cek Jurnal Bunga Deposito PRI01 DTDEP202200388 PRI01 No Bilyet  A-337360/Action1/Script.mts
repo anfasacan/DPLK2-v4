@@ -3,7 +3,7 @@ Dim dt_Username,preperation
 
 REM -------------- Call Function
 Call spLoadLibrary()
-Call spInitiateData("DPLKLib_Report.xlsx", "DPLKAKT101-001 - Akuntansi - Transaksi - SJS- Dep Bunga JT - Cek Jurnal Bunga Deposito PRI01 DTDEP202200388 PRI01 No Bilyet  A-337360.xlsx", "DPLKAKT101-001")
+Call spInitiateData("DPLKLib_Report.xlsx", "DPLKAKT101-001 - Akuntansi - Transaksi - SJS- Dep Bunga JT - Cek Jurnal Bunga Deposito PRI01 DTDEP202200388 PRI01 No Bilyet  A-337360 (2).xlsx", "DPLKAKT101-001")
 Call spGetDatatable()
 Call fnRunningIterator()
 Call spReportInitiate()
