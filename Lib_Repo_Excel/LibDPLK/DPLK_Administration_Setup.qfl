@@ -4661,6 +4661,7 @@ Sub Verifikasi_Setup_Administration
 	wait 3
 	Set objkey = CreateObject("WScript.Shell")
 	If InStr(1,DataTable.Value("JENIS_VERIFIKASI",dtlocalsheet),"1") <> 0 Then
+		msgbox "Masuk"
 		Browser("DPLK").Page("Verifikasi").WebEdit("Field Search").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
 		wait 7
 		Browser("DPLK").Page("Verifikasi").WebElement("Btn Ubah").Click
@@ -4668,6 +4669,8 @@ Sub Verifikasi_Setup_Administration
 		Call CaptureImageUFTV2(Browser("DPLK").Page("Verifikasi"),"Masuk Menu Ubah Data ", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 		wait 2
 		Browser("DPLK").Page("Verifikasi").WebElement("Dropdown Status Register").Click
+		wait 2
+		Browser("DPLK").Page("Verifikasi").WebEdit("Field Search Status Register").Click
 		wait 2
 		objkey.SendKeys DataTable.Value("STATUS_REGISTER",dtlocalsheet)
 		wait 2
@@ -4692,6 +4695,8 @@ Sub Verifikasi_Setup_Administration
 		Call CaptureImageUFTV2(Browser("DPLK").Page("Verifikasi"),"Cari Data Dan Masuk Ke Dalam Data Menggunakan Button Verifikasi", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 		wait 2
 		Browser("DPLK").Page("Verifikasi").WebElement("Dropdown Status Verifikasi").Click
+		wait 2
+		Browser("DPLK").Page("Verifikasi").WebEdit("Field Search Status Register").Click
 		wait 2
 		objkey.SendKeys DataTable.Value("JENIS_VERIFIKASI",dtlocalsheet)
 		wait 2

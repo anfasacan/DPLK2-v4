@@ -545,6 +545,8 @@ Sub AC_Direct_GoTo_Menu(Menu_Name,order)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
 	wait 2
+	Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
+	wait 2
 	objkey.SendKeys Menu_Name
 	wait 5
 	If order <> 0 and order <> 1 Then
