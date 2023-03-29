@@ -3,7 +3,7 @@ Dim dt_Username, preperation
 
 REM -------------- Call Function
 Call spLoadLibrary()
-Call spInitiateData("DPLKLib_Report.xlsx", "DPLKADM003-019 - Setup Pendapatan Pertahun - Tambah, Ubah, View Detil & Hapus Data.xlsx", "DPLKADM003")
+Call spInitiateData("DPLKLib_Report.xlsx", "DPLKADM093-001 - Setup Pendapatan Pertahun - View Detil Data.xlsx", "DPLKADM093-001")
 Call spGetDatatable()
 Call fnRunningIterator()
 Call spReportInitiate()
@@ -13,21 +13,13 @@ Call spAddScenario(dt_TCID, dt_TestScenarioDesc, dt_ScenarioDesc, dt_ExpectedRes
 Iteration = Environment.Value("ActionIteration")
 
 
+
 REM ------- DPLK
 Call DA_Login()
 Call AC_GoTo_Menu()
 
-If Iteration = 1 Then
-	Call Tambah_Setup_Administration_Setup_Pendapatan_Pertahun()
-ElseIf Iteration = 2 Then	
-	Call Ubah_Setup_Administration_Setup_Pendapatan_Pertahun()
-ElseIf Iteration = 3 Then
-	Call Verifikasi_Setup_Administration()
-ElseIf Iteration = 4 Then
+
 	Call Lihat_Setup_Administration_Setup_Pendapatan_Pertahun()
-ElseIf Iteration = 5 Then
-	Call Hapus_Setup_Administration_Setup_Pendapatan_Pertahun()
-End If
 
 Call DA_Logout("0")
 Call spReportSave()

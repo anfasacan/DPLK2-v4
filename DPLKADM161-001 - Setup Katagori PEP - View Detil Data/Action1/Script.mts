@@ -17,17 +17,7 @@ REM ------- DPLK
 Call DA_Login()
 Call AC_GoTo_Menu()
 
-If Iteration = 1 Then
-	Call Tambah_Setup_Administration_Setup_Katagori_PEP()
-ElseIf Iteration = 2 Then	
-	Call Ubah_Setup_Administration_Setup_Katagori_PEP()
-ElseIf Iteration = 3 Then
-	Call Verifikasi_Setup_Administration()
-ElseIf Iteration = 4 Then
 	Call Lihat_Setup_Administration_Setup_Katagori_PEP()
-ElseIf Iteration = 5 Then
-	Call Hapus_Setup_Administration_Setup_Katagori_PEP()
-End If
 
 Call DA_Logout("0")
 Call spReportSave()

@@ -33,6 +33,8 @@ End Sub
 Sub Open_Entry_Jurnal_Transaksi
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -202,6 +204,8 @@ End Sub
 Sub Ambil_Kode_Jurnal_Standar
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -218,6 +222,8 @@ End Sub
 Sub Ambil_Kode_Jurnal_Standar_With_Keyword(ColoumKey,Keyword,ColAction,ObjectType)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -241,6 +247,8 @@ End Sub
 Sub Ambil_Dokumen_Induk
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -256,6 +264,8 @@ End Sub
 Sub Ambil_Dokumen_Induk_With_Keyword(ColoumKey,Keyword,ColAction,ObjectType)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -279,6 +289,8 @@ End Sub
 Sub Ambil_Kode_Buku
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -294,6 +306,8 @@ End Sub
 Sub Ambil_Nomer_Rekening
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -309,6 +323,8 @@ End Sub
 Sub Ambil_No_Akun_Dari_Table
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -331,6 +347,8 @@ End Sub
 Sub Ambil_No_Akun_Dari_Table_With_Keyword(ColoumKey,Keyword,ColAction,ObjectType)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -456,6 +474,8 @@ End Sub
 Sub Ambil_Nilai_Debit(RowDebit,ColDebit)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -472,6 +492,8 @@ End Sub
 Sub Ambil_Nilai_Debit_With_Keyword(ColoumKey,Keyword,ColAction,ObjectType,RowDebit,ColDebit)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -546,6 +568,8 @@ End Sub
 Sub Ambil_Nilai_Tiket_ID(Keyword,Lenght)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -823,6 +847,8 @@ End Function
 Sub Ambil_Kode_Jurnal_Standar_Using_Row_Nmuber(Row_Number)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -839,6 +865,8 @@ End Sub
 Sub Ambil_No_Akun_Dari_Table_Using_Row_Number(Row_Number)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -860,6 +888,8 @@ End Sub
 Sub Buka_Entry_Jurnal_Transaksi_Using_Row_Number(Row_Number)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -875,6 +905,8 @@ End Sub
 Function Make_Array_Nominal_Transaksi
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2
@@ -985,9 +1017,13 @@ Function Get_Nilai_Nominal_For_TC_130
 '	msgbox Get_Nilai_Nominal_For_TC_130
 End Function
 
+
+
 Sub Get_Cell_Data_By_Row_And_Col(row,col)
 	Set objkey = CreateObject("WScript.Shell")
 	Browser("DPLK").Page("Sidebar").WebElement("Field Search Sidebar Menu").Click
+wait 2
+Browser("DPLK").Page("Sidebar").WebEdit("Field Kotak Search Sidebar").Click
 	wait 1
 	objkey.SendKeys "Entry Jurnal Transaksi"
 	wait 2

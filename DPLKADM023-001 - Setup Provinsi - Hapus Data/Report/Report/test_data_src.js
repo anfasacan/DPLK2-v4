@@ -1,1 +1,1 @@
-﻿var __testDataSource={items:[{dataFilePath:'Default.xlsx',dataFileFormat:'excel',dataFileFolder:'C:\\Users\\1442\\Desktop\\DPLK 2\\DPLKADM003-002 - Setup Provinsi - Tambah, Ubah, View Detil & Hapus Data\\Report',namePairs:[]}]};
+﻿var __testDataSource={items:[{dataFilePath:'Default.xlsx',dataFileFormat:'excel',dataFileFolder:'C:\\Users\\1442\\Desktop\\DPLK 2\\DPLKADM023-001 - Setup Provinsi - Hapus Data\\Report',namePairs:[]}]};

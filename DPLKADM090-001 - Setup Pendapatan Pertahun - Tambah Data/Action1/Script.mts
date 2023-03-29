@@ -14,25 +14,7 @@ Iteration = Environment.Value("ActionIteration")
 
 
 REM ------- DPLK
-Call DA_Login()
-Browser("DPLK").Navigate "http://192.168.168.107/" @@ hightlight id_;_6229456_;_script infofile_;_ZIP::ssf8.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup").Click @@ script infofile_;_ZIP::ssf14.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup Umum").Click @@ script infofile_;_ZIP::ssf15.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup Pendapatan Pertahun").Click @@ script infofile_;_ZIP::ssf16.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_2").WebButton("Tambah").Click @@ script infofile_;_ZIP::ssf17.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_3").WebEdit("kd_pendapatan_pertahun").Set "11" @@ script infofile_;_ZIP::ssf18.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_3").WebEdit("nama_pendapatan_pertahun").Set "Rp 5 Juta - < Rp 59 Juta;" @@ script infofile_;_ZIP::ssf19.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_2").Image("avatar1").Click @@ script infofile_;_ZIP::ssf24.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_2").WebButton("Logout").Click @@ script infofile_;_ZIP::ssf25.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_3").WebList("0 : Pending Register").Click @@ script infofile_;_ZIP::ssf20.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_3").WebEdit("Search").Set "0 : pending register" @@ script infofile_;_ZIP::ssf21.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_3").WebButton("Simpan").Click @@ script infofile_;_ZIP::ssf22.xml_;_
-Browser("DPLK").Page("Setup Pendapatan Pertahun_2").WebButton("×").Click @@ script infofile_;_ZIP::ssf23.xml_;_
-Browser("DPLK").Refresh @@ hightlight id_;_6229456_;_script infofile_;_ZIP::ssf9.xml_;_
-Browser("DPLK").Page("Login_2").WebEdit("UserName").Set "32074" @@ script infofile_;_ZIP::ssf10.xml_;_
-Browser("DPLK").Page("Login_2").WebEdit("Password").SetSecure "63db913beddec3eff84ca047cd78a496e80a226b" @@ script infofile_;_ZIP::ssf11.xml_;_
-Browser("DPLK").Page("Login_2").WebButton("Login").Click @@ script infofile_;_ZIP::ssf12.xml_;_
-Browser("DPLK").Page("Dashboard_2").WebButton("Ok").Click @@ script infofile_;_ZIP::ssf13.xml_;_
+Call DA_Login() @@ script infofile_;_ZIP::ssf13.xml_;_
 Call AC_GoTo_Menu()
 
 

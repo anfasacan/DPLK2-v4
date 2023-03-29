@@ -15,19 +15,6 @@ Iteration = Environment.Value("ActionIteration")
 
 REM ------- DPLK
 Call DA_Login()
-Browser("DPLK").Navigate "http://192.168.168.107/Account/Login?ReturnUrl=%2F" @@ hightlight id_;_788660_;_script infofile_;_ZIP::ssf8.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup").Click @@ script infofile_;_ZIP::ssf14.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup Umum").Click @@ script infofile_;_ZIP::ssf15.xml_;_
-Browser("DPLK").Page("Dashboard_2").Link("Setup Warga Negara").Click @@ script infofile_;_ZIP::ssf16.xml_;_
-Browser("DPLK").Page("Setup Warga Negara_2").WebEdit("WebEdit").Set "Vreemdelin" @@ script infofile_;_ZIP::ssf17.xml_;_
-Browser("DPLK").Page("Setup Warga Negara_2").WebElement("WebElement").Click @@ script infofile_;_ZIP::ssf18.xml_;_
-Browser("DPLK").Refresh @@ hightlight id_;_788660_;_script infofile_;_ZIP::ssf9.xml_;_
-Browser("DPLK").Page("Setup Warga Negara - VIEW").Image("avatar1").Click @@ script infofile_;_ZIP::ssf19.xml_;_
-Browser("DPLK").Page("Setup Warga Negara - VIEW").WebButton("Logout").Click @@ script infofile_;_ZIP::ssf20.xml_;_
-Browser("DPLK").Page("Login_2").WebEdit("UserName").Set "32074" @@ script infofile_;_ZIP::ssf10.xml_;_
-Browser("DPLK").Page("Login_2").WebEdit("Password").SetSecure "63e060f8746033a45b0f8b95d5e31d1604cecf26" @@ script infofile_;_ZIP::ssf11.xml_;_
-Browser("DPLK").Page("Login_2").WebButton("Login").Click @@ script infofile_;_ZIP::ssf12.xml_;_
-Browser("DPLK").Page("Dashboard_2").WebButton("Ok").Click @@ script infofile_;_ZIP::ssf13.xml_;_
 Call AC_GoTo_Menu()
 
 
