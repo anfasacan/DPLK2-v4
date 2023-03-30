@@ -1,1 +1,0 @@
-﻿var __testDataSource={items:[{dataFilePath:'Default.xlsx',dataFileFormat:'excel',dataFileFolder:'C:\\Users\\1442\\Desktop\\DPLK 2\\DPLKAKT002-005 - Laporan Keuangan - Perubahan Aset Neto - Cek Laporan Keuangan Perubahan Aset Neto Harian\\Report',namePairs:[]}]};

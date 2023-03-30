@@ -18,17 +18,23 @@ Sub Tambah_Setup_Akuntansi_Setup_Akun
 	wait 2
 	Browser("DPLK").Page("Setup Akun").WebElement("Dropdown Posisi Normal").Click
 	wait 2
+	Browser("DPLK").Page("Setup Akun").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("POSISI_NORMAL",dtlocalsheet)
 	wait 3
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Akun").WebElement("Dropdown Status Non Aktif").Click
 	wait 2
+	Browser("DPLK").Page("Setup Akun").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_NON_AKTIF",dtlocalsheet)
 	wait 3
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Akun").WebElement("Dropdown Tipe Akun").Click
+	wait 2
+	Browser("DPLK").Page("Setup Akun").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_AKUN",dtlocalsheet)
 	wait 3
@@ -38,6 +44,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Akun
 	For Iterator = 0 To ubound(Status_Index_Val) Step 1
 		wait 2
 		Browser("DPLK").Page("Setup Akun").WebElement("Dropdown Status T"&Iterator).Click
+		wait 2
+		Browser("DPLK").Page("Setup Akun").WebEdit("Field Search Dropdown").Click
 		wait 2
 		objkey.sendkeys Status_Index_Val(Iterator)
 		wait 3
@@ -147,21 +155,27 @@ Sub Tambah_Setup_Akuntansi_Setup_Akun_Next_Year
 	wait 2
 	Call CaptureImageUFTV2(Browser("DPLK").Page("Setup Akun Next Year"),"Masuk Menu Tambah Data ", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 	wait 2
-
+	
 	Browser("DPLK").Page("Setup Akun Next Year").WebElement("Dropdown Entitas").Click
 	wait 3
+	Browser("DPLK").Page("Setup Akun Next Year").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Akun Next Year").WebElement("Dropdown Produk").Click
 	wait 3
+	Browser("DPLK").Page("Setup Akun Next Year").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("PRODUK",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Akun Next Year").WebElement("Dropdown Tipe Saldo").Click
 	wait 3
+	Browser("DPLK").Page("Setup Akun Next Year").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_SALDO",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
@@ -212,6 +226,8 @@ Sub Ubah_Setup_Akuntansi_Setup_Akun_Next_Year
 
 	Browser("DPLK").Page("Setup Akun Next Year").WebElement("Dropdown Tipe Saldo").Click
 	wait 3
+	Browser("DPLK").Page("Setup Akun Next Year").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_SALDO",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
@@ -393,11 +409,13 @@ Sub Tambah_Setup_Akuntansi_Setup_Jurnal_Standar
 	wait 2
 	Call CaptureImageUFTV2(Browser("DPLK").Page("Setup Jurnal Standar"),"Masuk Menu Tambah Data ", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 	wait 2
-
+	
 	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Kode Jurnal").Set DataTable.Value("KODE_JURNAL",dtlocalsheet)
 	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Nama Jurnal").Set DataTable.Value("NAMA_JURNAL",dtlocalsheet)
 
 	Browser("DPLK").Page("Setup Jurnal Standar").WebElement("Dropdown Tipe Jurnal").Click
+	wait 2
+	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_JURNAL",dtlocalsheet)
 	wait 2
@@ -405,11 +423,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Jurnal_Standar
 
 	Browser("DPLK").Page("Setup Jurnal Standar").WebElement("Dropdown Entitas").Click
 	wait 2
+	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Jurnal Standar").WebElement("Dropdown Status Aktif").Click
+	wait 2
+	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_AKTIF",dtlocalsheet)
 	wait 2
@@ -426,6 +448,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Jurnal_Standar
 	wait 2
 
 	Browser("DPLK").Page("Setup Jurnal Standar").WebElement("Dropdown Saldo").Click
+	wait 2
+	Browser("DPLK").Page("Setup Jurnal Standar").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("SALDO_NORMAL",dtlocalsheet)
 	wait 2
@@ -588,6 +612,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Bank_BI
 	Browser("DPLK").Page("Setup Bank BI").WebEdit("Field Nama Bank BI").Set DataTable.Value("NAMA_BANK_BI",dtlocalsheet)
 	Browser("DPLK").Page("Setup Bank BI").WebElement("Dropdown Status Non Aktif Container").Click
 	wait 2
+	Browser("DPLK").Page("Setup Bank BI").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_NON_AKTIF",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
@@ -625,6 +651,8 @@ Sub Ubah_Setup_Akuntansi_Setup_Bank_BI
 	wait 2
 
 	Browser("DPLK").Page("Setup Bank BI").WebElement("Dropdown Status Non Aktif Container").Click
+	wait 2
+	Browser("DPLK").Page("Setup Bank BI").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_NON_AKTIF",dtlocalsheet)
 	wait 2
@@ -709,11 +737,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Bank
 	
 	Browser("DPLK").Page("Setup Bank").WebElement("Fropdown Kode BI").Click
 	wait 2
+	Browser("DPLK").Page("Setup Bank").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("KODE_BANK",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Bank").WebElement("Field Status Non Aktif").Click
+	wait 2
+	Browser("DPLK").Page("Setup Bank").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_NON_AKTIF",dtlocalsheet)
 	wait 2
@@ -830,6 +862,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Format_Laporan_Neraca
 
 	Browser("DPLK").Page("Setup Format Laporan Neraca").WebElement("Dropdown Tipe Akun 1").Click
 	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Neraca").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_AKUN1",dtlocalsheet)
 	wait 3
 	objkey.sendkeys "{ENTER}"
@@ -840,6 +874,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Format_Laporan_Neraca
 	Browser("DPLK").Page("Setup Format Laporan Neraca").WebElement("Table Index 1 Akun 1").Click
 
 	Browser("DPLK").Page("Setup Format Laporan Neraca").WebElement("Dropdown Tipe Akun 2").Click
+	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Neraca").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("TIPE_AKUN2",dtlocalsheet)
 	wait 3
@@ -1214,11 +1250,15 @@ Sub Ubah_Setup_Akuntansi_Setup_Format_Laporan_Aset_Netto
 	
 	Browser("DPLK").Page("Setup Format Laporan Aset Netto").WebElement("Dropdown Tipe Akun 1").Click
 	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Aset Netto").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.Sendkeys DataTable.Value("TIPE_AKUN1",dtlocalsheet)
 	wait 4
 	objkey.Sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Format Laporan Aset Netto").WebElement("Dropdown Tipe Akun 2").Click
+	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Aset Netto").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.Sendkeys DataTable.Value("TIPE_AKUN2",dtlocalsheet)
 	wait 4
@@ -1318,11 +1358,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Format_Laporan_Perubahan_Aset_Netto
 
 	Browser("DPLK").Page("Setup Format Laporan Perubahan Aset Netto").WebElement("Dropdown Tipe Akun 1").Click
 	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Perubahan Aset Netto").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.Sendkeys DataTable.Value("TIPE_AKUN1",dtlocalsheet)
 	wait 4
 	objkey.Sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Format Laporan Perubahan Aset Netto").WebElement("Dropdown Tipe Akun 2").Click
+	wait 2
+	Browser("DPLK").Page("Setup Format Laporan Perubahan Aset Netto").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.Sendkeys DataTable.Value("TIPE_AKUN2",dtlocalsheet)
 	wait 4
@@ -1448,11 +1492,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Periode_Harian
 
 	Browser("DPLK").Page("Setup Periode Harian").WebElement("Dropdown Entitas").Click
 	wait 2
+	Browser("DPLK").Page("Setup Periode Harian").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Periode Harian").WebElement("Dropdown Kantor").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Harian").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("KANTOR",dtlocalsheet)
 	wait 2
@@ -1460,11 +1508,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Periode_Harian
 	
 	Browser("DPLK").Page("Setup Periode Harian").WebElement("Dropdown Status").Click
 	wait 2
+	Browser("DPLK").Page("Setup Periode Harian").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("STATUS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Periode Harian").WebElement("Dropdown Status Khusus").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Harian").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_KHUSUS_GL",dtlocalsheet)
 	wait 2
@@ -1504,6 +1556,8 @@ Sub Ubah_Setup_Akuntansi_Setup_Periode_Harian
 	wait 2
 
 	Browser("DPLK").Page("Setup Periode Harian").WebElement("Dropdown Status").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Harian").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS",dtlocalsheet)
 	wait 2
@@ -1578,11 +1632,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Periode_Bulanan
 
 	Browser("DPLK").Page("Setup Periode Bulanan").WebElement("Dropdown Entitas").Click
 	wait 2
+	Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Periode Bulanan").WebElement("Dropdown Kantor").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("KANTOR",dtlocalsheet)
 	wait 2
@@ -1590,11 +1648,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Periode_Bulanan
 	
 	Browser("DPLK").Page("Setup Periode Bulanan").WebElement("Dropdown Status").Click
 	wait 2
+	Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("STATUS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Periode Bulanan").WebElement("Dropdown Status Khusus").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_KHUSUS_GL",dtlocalsheet)
 	wait 2
@@ -1637,6 +1699,8 @@ Sub Ubah_Setup_Akuntansi_Setup_Periode_Bulanan
 	wait 2
 
 	Browser("DPLK").Page("Setup Periode Bulanan").WebElement("Dropdown Status").Click
+	wait 2
+	Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS",dtlocalsheet)
 	wait 2
@@ -1711,11 +1775,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Opening_Balance
 
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Entitas").Click
 	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Kantor").Click
+	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("KANTOR",dtlocalsheet)
 	wait 2
@@ -1723,11 +1791,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Opening_Balance
 	
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Mata Uang").Click
 	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("MATA_UANG",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Produk").Click
+	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("PRODUK",dtlocalsheet)
 	wait 2
@@ -1841,6 +1913,7 @@ Sub Hapus_Setup_Akuntansi_Setup_Opening_Balance
 		Browser("DPLK").Page("Setup Opening Balance").WebButton("Btn X Notifikasi").Click
 	End If
 End Sub
+
 REM ==== Akuntansi Setup Opening Balance
 Sub Tambah_Setup_Akuntansi_Setup_Opening_Balance
 	Set devices = CreateObject("Mercury.DeviceReplay")
@@ -1852,11 +1925,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Opening_Balance
 
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Entitas").Click
 	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("ENTITAS",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Kantor").Click
+	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("KANTOR",dtlocalsheet)
 	wait 2
@@ -1864,11 +1941,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Opening_Balance
 	
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Mata Uang").Click
 	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("MATA_UANG",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 	
 	Browser("DPLK").Page("Setup Opening Balance").WebElement("Dropdown Produk").Click
+	wait 2
+	Browser("DPLK").Page("Setup Opening Balance").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("PRODUK",dtlocalsheet)
 	wait 2
@@ -1998,6 +2079,8 @@ Sub Tambah_Setup_Akuntansi_Setup_Rekening
 
 	Browser("DPLK").Page("Setup Rekening").WebElement("Dropdown Produk").Click
 	wait 2
+	Browser("DPLK").Page("Setup Rekening").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("PRODUK",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
@@ -2006,11 +2089,15 @@ Sub Tambah_Setup_Akuntansi_Setup_Rekening
 
 	Browser("DPLK").Page("Setup Rekening").WebElement("Dropdown Mata Uang").Click
 	wait 2
+	Browser("DPLK").Page("Setup Rekening").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.sendkeys DataTable.Value("MATA_UANG",dtlocalsheet)
 	wait 2
 	objkey.sendkeys "{ENTER}"
 
 	Browser("DPLK").Page("Setup Rekening").WebElement("Field Status Non Aktif").Click
+	wait 2
+	Browser("DPLK").Page("Setup Rekening").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("STATUS_NON_AKTIF",dtlocalsheet)
 	wait 2
@@ -2054,6 +2141,8 @@ Sub Ubah_Setup_Akuntansi_Setup_Rekening
 	wait 2
 
 	Browser("DPLK").Page("Setup Rekening").WebElement("Dropdown Produk").Click
+	wait 2
+	Browser("DPLK").Page("Setup Rekening").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.sendkeys DataTable.Value("PRODUK",dtlocalsheet)
 	wait 2
@@ -2224,6 +2313,8 @@ Sub Verifikasi_Setup_Akuntansi
 	If InStr(1,DataTable.Value("JENIS_VERIFIKASI",dtlocalsheet),"1") <> 0 Then
 		If inStr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT069") <> 0 Then
 			Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Tanggal Awal").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
+		ElseIf inStr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT039") <> 0 Then
+			Browser("DPLK").Page("Setup Format Laporan Neraca").WebEdit("Field Search Level 1").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
 		Else 
 			Browser("DPLK").Page("Verifikasi").WebEdit("Field Search").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
 		End If
@@ -2233,6 +2324,8 @@ Sub Verifikasi_Setup_Akuntansi
 		Call CaptureImageUFTV2(Browser("DPLK").Page("Verifikasi"),"Masuk Menu Ubah Data ", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 		wait 2
 		Browser("DPLK").Page("Verifikasi").WebElement("Dropdown Status Register").Click
+		wait 2
+		Browser("DPLK").Page("Verifikasi").WebEdit("Field Search Dropdown").Click
 		wait 2
 		objkey.SendKeys DataTable.Value("STATUS_REGISTER",dtlocalsheet)
 		wait 2
@@ -2252,6 +2345,8 @@ Sub Verifikasi_Setup_Akuntansi
 			
 		If inStr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT069") <> 0 Then
 			Browser("DPLK").Page("Setup Periode Bulanan").WebEdit("Field Search Tanggal Awal").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
+		ElseIf inStr(1,DataTable.Value("TC_ID",dtlocalsheet),"DPLKAKT039") <> 0 Then
+			Browser("DPLK").Page("Setup Format Laporan Neraca").WebEdit("Field Search Level 1").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
 		Else 
 			Browser("DPLK").Page("Verifikasi").WebEdit("Field Search").Set DataTable.Value("VERIFIKASI",dtlocalsheet)
 		End If
@@ -2261,6 +2356,8 @@ Sub Verifikasi_Setup_Akuntansi
 		Call CaptureImageUFTV2(Browser("DPLK").Page("Verifikasi"),"Cari Data Dan Masuk Ke Dalam Data Menggunakan Button Verifikasi", " ",  compatibilityMode.Desktop, ReportStatus.Passed)
 		wait 2
 		Browser("DPLK").Page("Verifikasi").WebElement("Dropdown Status Verifikasi").Click
+		wait 2
+		Browser("DPLK").Page("Verifikasi").WebEdit("Field Search Dropdown").Click
 		wait 2
 		objkey.SendKeys DataTable.Value("JENIS_VERIFIKASI",dtlocalsheet)
 		wait 2

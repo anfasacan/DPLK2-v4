@@ -257,6 +257,8 @@ Sub Lihat_Setup_Administration_Setup_Role_User
 	Browser("DPLK").Page("Setup Role User").WebElement("Tab Halaman").Click
 	wait 5
 	Browser("DPLK").Page("Setup Role User").WebEdit("Field Search").Set DataTable.Value("USERNAME",dtlocalsheet)
+	wait 2
+	Browser("DPLK").Page("Setup Salutasi").WebEdit("Field Search 2").Set DataTable.Value("USERNAME",dtlocalsheet)
 	wait 5
 	Browser("DPLK").Page("Setup Role User").WebElement("Btn Lihat").Click
 	wait 2
