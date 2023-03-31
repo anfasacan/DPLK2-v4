@@ -16,7 +16,7 @@ REM ------- DPLK
 Call DA_Login()
 Call Ambil_Dokumen_Induk()
 Call Ambil_Total_Debit_Credit()
-Call AC_GoTo_Menu()
+Call AC_Direct_GoTo_Menu(DataTable.Value("SIDEBAR_SUBMENU",dtlocalsheet))
 Call Lihat_Kepesertaan_Inquiry_Inquiry_Deposit_Bulk()
 Call Compare_Entry_Inquiry_Deposit_Bulk()
 Call DA_Logout("0")
