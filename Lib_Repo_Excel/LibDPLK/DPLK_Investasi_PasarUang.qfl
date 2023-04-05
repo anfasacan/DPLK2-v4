@@ -30,6 +30,7 @@ Sub Lihat_Investasi_Pasar_Uang_Dealing_Ticket_Deposito
 			Exit for
 		End If
 	Next
+	
 	For Iterator = 135 To 137 Step 1
 		If InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT"&Iterator) <> 0 Then
 			flag = true
@@ -41,17 +42,23 @@ Sub Lihat_Investasi_Pasar_Uang_Dealing_Ticket_Deposito
 		flag2 = true
 	End If
 	
+	If InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT134") <> 0 Then
+		flag3 = true
+	End If
 	
 	If flag Then
 		Browser("DPLK").Page("Dealing Ticket Deposito").WebEdit("Field Search").Set Dokumen_Induk	
 	ElseIf flag2 Then
 		Browser("DPLK").Page("Dealing Ticket Deposito").WebEdit("Field Search").Set Tiket_ID
+	ElseIf flag3 Then
+		Browser("DPLK").Page("Dealing Ticket Deposito").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
 	Else 
 		Browser("DPLK").Page("Dealing Ticket Deposito").WebEdit("Field Search").Set DataTable.Value("KODE_JURNAL",dtlocalsheet)	
 	End If
 		
 	flag = false
 	flag2 = false
+	flag3 = false
 '	If InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT004") <> 0 Then
 '		Browser("DPLK").Page("Dealing Ticket Deposito").WebEdit("Field Search").Set Dokumen_Induk
 '	ElseIf InStr(1, DataTable.Value("TC_ID",dtlocalsheet), "DPLKAKT005") <> 0 Then
@@ -80,12 +87,16 @@ Sub Cetak_Investasi_Laporan_Transaksi
 	
 	Browser("DPLK").Page("Laporan Transaksi").WebElement("Dropdown Nama Laporan").Click
 	wait 2
+	Browser("DPLK").Page("Laporan Transaksi").WebEdit("Field Search Dropdown").Click
+	wait 2
 	objkey.SendKeys DataTable.Value("NAMA_LAPORAN",dtlocalsheet)
 	wait 2
 	objkey.SendKeys "{ENTER}"
 	wait 2
 	
 	Browser("DPLK").Page("Laporan Transaksi").WebElement("Dropdown Kantor").Click
+	wait 2
+	Browser("DPLK").Page("Laporan Transaksi").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.SendKeys DataTable.Value("KANTOR",dtlocalsheet)
 	wait 2
@@ -100,6 +111,8 @@ Sub Cetak_Investasi_Laporan_Transaksi
 '	wait 2
 '	
 	Browser("DPLK").Page("Laporan Transaksi").WebElement("Dropdown Portofolio").Click
+	wait 2
+	Browser("DPLK").Page("Laporan Transaksi").WebEdit("Field Search Dropdown").Click
 	wait 2
 	objkey.SendKeys DataTable.Value("PORTOFOLIO",dtlocalsheet)
 	wait 2

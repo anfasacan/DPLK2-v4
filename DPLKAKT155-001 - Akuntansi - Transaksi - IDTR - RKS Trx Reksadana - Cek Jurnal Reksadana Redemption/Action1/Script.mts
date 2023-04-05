@@ -6,7 +6,7 @@ Call spLoadLibrary()
 Call spInitiateData("DPLKLib_Report.xlsx", "DPLKAKT155-001 - Akuntansi - Transaksi - IDTR - RKS Trx Reksadana - Cek Jurnal Reksadana Redemption.xlsx", "DPLKAKT155-001")
 Call spGetDatatable()
 Call fnRunningIterator()
-Call spReportInitiate()
+Call spReportInitiate()	
 preperation = Split(DataTable.Value("PREPERATION",dtlocalsheet),",")
 Call spAddScenario(dt_TCID, dt_TestScenarioDesc, dt_ScenarioDesc, dt_ExpectedResult, preperation)
 Iteration = Environment.Value("ActionIteration")
@@ -16,16 +16,13 @@ Call DA_Login()
 Call AC_Direct_GoTo_Menu("Entry Jurnal Transaksi",1)
 Call Open_Entry_Jurnal_Transaksi()
 Call Ambil_Total_Debit_Credit()
-Call AC_GoTo_Menu()
+Call AC_Direct_GoTo_Menu(DataTable.Value("SIDEBAR_SUBMENU_SUBMENU",dtlocalsheet),1)
 Call Lihat_Investasi_Reksadana_Dealing_Ticket_Reksadana()
 Call Compare_Investasi_Reksadana_Dealing_Ticket_Reksadana()
 Call DA_Logout("0")
 Call Reset_Global_Var()
 Call spReportForceSave()
 
-
-
-	
 Sub spLoadLibrary()
 	Dim LibPathDPLK, LibReport, LibRepo, objSysInfo
 	Dim tempDPLKPath, tempDPLKPath2, PathDPLK

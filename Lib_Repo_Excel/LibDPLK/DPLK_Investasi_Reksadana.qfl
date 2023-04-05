@@ -9,12 +9,11 @@
 	
 	If flag Then
 		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set Dokumen_Induk	
-	ElseIf flag2 Then
+	ElseIf flag2 and Tiket_ID <> "" Then
 		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set Tiket_ID
 	Else 
 		Browser("DPLK").Page("Dealing Ticket Reksadana").WebEdit("Field Search").Set DataTable.Value("SEARCH_DOKUMEN_ID",dtlocalsheet)	
 	End If
-		
 	flag = false
 	flag2 = false
 	wait 5

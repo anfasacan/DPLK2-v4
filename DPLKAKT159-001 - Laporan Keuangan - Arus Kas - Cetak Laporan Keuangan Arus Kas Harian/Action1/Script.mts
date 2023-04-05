@@ -14,7 +14,9 @@ REM ------- DPLK
 Call DA_Login()
 Call AC_GoTo_Menu()
 Call Cetak_Laporan_OJK()
+wait 1000
 Call DA_Logout("0")
+
 Call OpenLastDownloadFile_Scroll_Screen(2)
 Call spReportSave()
 	
